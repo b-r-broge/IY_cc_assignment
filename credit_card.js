@@ -32,9 +32,29 @@
 // Write a function `isValidCC(ccnum)` that takes a string and
 // returns `true` if the credit card entered is valid, `false` otherwise.
 
-function isValid(ccnum){}
+function isValid(ccnum){
+  let ccArr = [];
+  for (let i = 0 ; i < ccnum.length; i++) {
+    // console.log(ccnum[i])
+    if (ccnum[i] !== " ") {
+      ccArr.push(parseInt(ccnum[i]));
+    }
+  }
+  //console.log(ccArr);
+  for (let i = 0 ; i < ccArr.length; i += 2) {
+    ccArr[i] = ccArr[i]*2
+  }
+  console.log(ccArr);
+  let checkNum = ccArr.reduce((a, b) => (a + b), 0);
+  console.log(checkNum)
+  if ( checkNum % 10 === 0) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
 // tests
 // ---
-console.assert(isValid("4408 0412 3456 7893") === false)
-console.assert(isValid("5000000000000000") === false)
+console.assert(isValid("4408 0412 3456 7893") === false);
+console.assert(isValid("5000000000000000") === true);
